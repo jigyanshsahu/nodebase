@@ -124,9 +124,27 @@ export function LoginForm() {
                       </FormItem>
                     )}
                   />
-
+                    <Button
+                      type="submit"
+                      className="w-full"
+                      disabled={isPending}
+                    >
+                      Login
+                    </Button>
+                   
                 </div>
-              </div>
+                <div className="text-center text-sm
+                ">
+                    don&apos;t have an account?{" "}
+                    <Link
+                      href="/signup"
+                      className="underline underline-offset-4"
+                    >
+                      Sign up
+                    </Link>
+                  </div>
+                </div>
+              
             </form>
           </Form>
         </CardContent>
