@@ -4,9 +4,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql" // or mysql/sqlite depending on your DB
-  url      = env("DATABASE_URL")
-   directUrl = env("DATABASE_URL_UNPOOLED")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL")
 }
 model User {
   id            String    @id

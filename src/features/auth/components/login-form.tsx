@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+
 import {
   Card,
   CardContent,
@@ -25,6 +26,8 @@ import {
   FormMessage,
   FormControl,
 } from "@/components/ui/form";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -45,7 +48,19 @@ export function LoginForm() {
   });
 
   const onSubmit = async (values: LoginFormValues) => {
-    console.log(values);
+    await authClient.signIn.email({
+      email: values.email,
+      password: values.password,
+      callbackURL: "/",
+    }, {
+        onSuccess: () => {
+          router.push("/")
+        }, 
+          onError: (ctx) =>{
+            toast.error(ctx.error.message);
+          }
+        
+    })
   };
 
   const isPending = form.formState.isSubmitting;
